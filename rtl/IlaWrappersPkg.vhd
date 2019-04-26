@@ -24,8 +24,8 @@ package IlaWrappersPkg is
       port (
          clk            : in  sl;
          trig_out       : out sl;
-         trig_out_ack   : in  sl;
-         trig_in        : in  sl;
+         trig_out_ack   : in  sl := '1';
+         trig_in        : in  sl := '0';
          trig_in_ack    : out sl;
          probe0         : in  slv(63 downto 0);
          probe1         : in  slv(63 downto 0);
@@ -38,8 +38,8 @@ package IlaWrappersPkg is
       port (
          clk            : in  sl;
          trig_out       : out sl;
-         trig_out_ack   : in  sl;
-         trig_in        : in  sl;
+         trig_out_ack   : in  sl := '1';
+         trig_in        : in  sl := '0';
          trig_in_ack    : out sl;
 
          probe0         : in  slv(31 downto 0);
@@ -71,8 +71,8 @@ package IlaWrappersPkg is
       port (
          clk            : in  sl;
          trig_out       : out sl;
-         trig_out_ack   : in  sl;
-         trig_in        : in  sl;
+         trig_out_ack   : in  sl := '1';
+         trig_in        : in  sl := '0';
          trig_in_ack    : out sl;
 
          probe0         : in  slv(63 downto 0);
