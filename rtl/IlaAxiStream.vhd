@@ -34,7 +34,7 @@ end entity IlaAxiStream;
 
 architecture IlaAxiStreamImpl of IlaAxiStream is
 begin
-   U_ILA : component IlaAxiStreamIP
+   U_ILA : component Ila_256
       port map (
          clk                  => axisClk,
          trig_in              => trigIn,
@@ -44,13 +44,15 @@ begin
 
          probe0               => mAxis.tData( 63 downto  0),
          probe1               => mAxis.tData(127 downto 64),
-         probe2               => mAxis.tStrb,
-         probe3               => mAxis.tKeep,
-         probe4               => mAxis.tDest,
-         probe5               => mAxis.tId,
-         probe6               => mAxis.tUser(63 downto  0),
-         probe7(0)            => mAxis.tLast,
-         probe8(0)            => mAxis.tValid,
-         probe9(0)            => sAxis.tReady
+         probe2(15 downto  0) => mAxis.tStrb,
+         probe2(31 downto 16) => mAxis.tKeep,
+         probe2(39 downto 32) => mAxis.tDest,
+         probe2(47 downto 40) => mAxis.tId,
+         probe2(          48) => mAxis.tLast,
+         probe2(          49) => mAxis.tValid,
+         probe2(          50) => sAxis.tReady,
+         probe2(63 downto 51) => (others => '0'),
+
+         probe3               => mAxis.tUser(63 downto  0)
       );
 end architecture IlaAxiStreamImpl;
