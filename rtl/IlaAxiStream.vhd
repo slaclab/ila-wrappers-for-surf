@@ -44,8 +44,8 @@ begin
 
          probe0               => mAxis.tData( 63 downto  0),
          probe1               => mAxis.tData(127 downto 64),
-         probe2(15 downto  0) => mAxis.tStrb,
-         probe2(31 downto 16) => mAxis.tKeep,
+         probe2(15 downto  0) => mAxis.tStrb( 15 downto  0),
+         probe2(31 downto 16) => mAxis.tKeep( 15 downto  0),
          probe2(39 downto 32) => mAxis.tDest,
          probe2(47 downto 40) => mAxis.tId,
          probe2(          48) => mAxis.tLast,
