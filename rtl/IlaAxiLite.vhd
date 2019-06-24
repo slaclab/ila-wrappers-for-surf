@@ -36,35 +36,40 @@ end entity IlaAxiLite;
 
 architecture IlaAxiLiteImpl of IlaAxiLite is
 begin
-   U_ILA : component IlaAxiLiteIP
+   U_ILA : component Ila_256
       port map (
-         clk            => axilClk,
-         trig_in        => trigIn,
-         trig_in_ack    => trigInAck,
-         trig_out       => trigOut,
-         trig_out_ack   => trigOutAck,
-         probe0         => mAxilRead.araddr,
-         probe1         => mAxilRead.arprot,
-         probe2(0)      => mAxilRead.arvalid,
-         probe3(0)      => sAxilRead.arready,
+         clk                  => axilClk,
+         trig_in              => trigIn,
+         trig_in_ack          => trigInAck,
+         trig_out             => trigOut,
+         trig_out_ack         => trigOutAck,
 
-         probe4         => sAxilRead.rdata,
-         probe5         => sAxilRead.rresp,
-         probe6(0)      => sAxilRead.rvalid,
-         probe7(0)      => mAxilRead.rready,
+         probe0(31 downto  0) => mAxilRead.araddr,
+         probe0(34 downto 32) => mAxilRead.arprot,
+         probe0(          35) => mAxilRead.arvalid,
+         probe0(          36) => sAxilRead.arready,
+         probe0(63 downto 37) => (others => '0'),
 
-         probe8         => mAxilWrite.awaddr,
-         probe9         => mAxilWrite.awprot,
-         probe10(0)     => mAxilWrite.awvalid,
-         probe11(0)     => sAxilWrite.awready,
+         probe1(31 downto  0) => sAxilRead.rdata,
+         probe1(33 downto 32) => sAxilRead.rresp,
+         probe1(          34) => sAxilRead.rvalid,
+         probe1(          35) => mAxilRead.rready,
+         probe1(63 downto 36) => (others => '0'),
 
-         probe12        => mAxilWrite.wdata,
-         probe13        => mAxilWrite.wstrb,
-         probe14(0)     => mAxilWrite.wvalid,
-         probe15(0)     => sAxilWrite.wready,
+         probe2(31 downto  0) => mAxilWrite.awaddr,
+         probe2(34 downto 32) => mAxilWrite.awprot,
+         probe2(          35) => mAxilWrite.awvalid,
+         probe2(          36) => sAxilWrite.awready,
+         probe2(63 downto 37) => (others => '0'),
 
-         probe16        => sAxilWrite.bresp,
-         probe17(0)     => sAxilWrite.bvalid,
-         probe18(0)     => mAxilWrite.bready
+         probe3(31 downto  0) => mAxilWrite.wdata,
+         probe3(35 downto 32) => mAxilWrite.wstrb,
+         probe3(          36) => mAxilWrite.wvalid,
+         probe3(          37) => sAxilWrite.wready,
+
+         probe3(39 downto 38) => sAxilWrite.bresp,
+         probe3(          40) => sAxilWrite.bvalid,
+         probe3(          41) => mAxilWrite.bready,
+         probe3(63 downto 42) => (others => '0')
       );
 end architecture IlaAxiLiteImpl;
